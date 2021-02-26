@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::head(~{::title},~{::link})">
+    <title>登录</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/login.css}"/>
+</head>
+<body>
+<div th:replace="common::header"></div>
+<div th:replace="common::seach"></div>
+<!-- Head End -->
+<!-- Carousel -->
+<div class="layui-row">
+    <div class="layui-col-sm12 layui-col-md12">
+        <div class="layui-carousel zyl_login_height" id="zyllogin" lay-filter="zyllogin" lay-anim="fade"
+             lay-indicator="none"
+             lay-arrow="hover" style="height: 580px !important; width: 100%;">
+            <div carousel-item="">
+                <div class="layui-this">
+                    <div class="zyl_login_cont">
+                    </div>
+                </div>
+                <div class="">
+                    <img th:src="@{/static/img/login_01.jpg}"/>
+                </div>
+                <div class="">
+                    <div class="background">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="">
+                    <img th:src="@{/static/img/login_03.jpg}"/>
+                </div>
+            </div>
+            <div class="layui-carousel-ind">
+                <ul>
+                    <li class="layui-this"></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                    <li class=""></li>
+                </ul>
+            </div>
+            <button class="layui-icon layui-carousel-arrow" lay-type="sub"></button>
+            <button class="layui-icon layui-carousel-arrow"
+                    lay-type="add">
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+<div th:replace="common::footer"></div>
+<!-- Footer End -->
+
+<!-- LoginForm -->
+<div class="zyl_lofo_main">
+    <fieldset class="layui-elem-field layui-field-title zyl_mar_02">
+        <legend>欢迎登陆 - xxxx购物商城</legend>
+    </fieldset>
+    <div class="layui-row layui-col-space15">
+        <form class="layui-form zyl_pad_01" lay-filter="loginForm" action="#">
+            <div class="layui-col-sm12 layui-col-md12">
+                <div class="layui-form-item">
+                    <input type="text" name="username" lay-verify="required|userName" autocomplete="off"
+                           placeholder="账号" class="layui-input">
+                    <i class="layui-icon layui-icon-username zyl_lofo_icon"></i>
+                </div>
+            </div>
+            <div class="layui-col-sm12 layui-col-md12">
+                <div class="layui-form-item">
+                    <input type="password" name="password" lay-verify="required|pass" autocomplete="off"
+                           placeholder="密码"
+                           class="layui-input">
+                    <i class="layui-icon layui-icon-password zyl_lofo_icon"></i>
+                </div>
+            </div>
+
+            <div class="layui-col-sm12 layui-col-md12">
+                <div class="layui-row">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <div class="layui-form-item">
+                            <input type="text" name="vercode" id="vercode" lay-verify="required|vercodes"
+                                   autocomplete="off" placeholder="验证码"
+                                   class="layui-input" maxlength="4">
+                            <i class="layui-icon layui-icon-vercode zyl_lofo_icon"></i>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <div class="zyl_lofo_vercode zylVerCode" onclick="zylVerCode()">WGMa</div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm12 layui-col-md12">
+                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="loginForm">立即登录</button>
+            </div>
+            <hr/>
+            <div>
+                <a th:href="@{/register.html}" class="fl">没有账号？立即注册</a>
+                <a href="javascript:;" class="fr">忘记密码？</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- LoginForm End -->
+<script th:src="@{/static/js/jquery.js}" charset="UTF-8"></script>
+<script th:src="@{/static/js/zylVerificationCode.js}" charset="UTF-8"></script>
+<script th:src="@{/static/js/jparticle.min.js}" charset="UTF-8"></script>
+<script th:src="@{/static/layui/layui.js}" charset="UTF-8"></script>
+<script th:src="@{/static/js/user/login.js}" charset="UTF-8"></script>
+</body>
+</html>

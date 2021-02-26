@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxnd.pc.mapper.UserMapper">
+
+
+    <select id="queryUserInfoByName" parameterType="java.lang.String" resultType="com.sxnd.mall.pojo.User">
+        select * from mall_user where username=#{username}
+    </select>
+
+    <select id="queryUserEmailExit" parameterType="java.lang.String" resultType="int">
+        select count(*) from mall_user where email=#{email}
+    </select>
+
+    <insert id="insertUser" parameterType="com.sxnd.mall.pojo.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `mall_user` ( `username`, `password`, `email`, `phone`, `balance`, `user_id`)
+        VALUES (#{username},#{password},#{email},#{phone},#{balance},#{userId})
+    </insert>
+
+    <insert id="insertWater">
+        insert into integrate_water(user_id,`number`,`type`,`status`)
+        values(#{userId},#{number},#{type},#{status})
+    </insert>
+
+    <update id="updateUserBalance" parameterType="com.sxnd.mall.pojo.User">
+        update mall_user set balance=#{balance} where id=#{id}
+    </update>
+
+    <select id="queryUserById" parameterType="int" resultType="com.sxnd.mall.pojo.User">
+        select * from mall_user where id=#{userId}
+    </select>
+
+
+</mapper>

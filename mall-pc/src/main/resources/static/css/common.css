@@ -1,0 +1,36 @@
+.common_header {
+    line-height: 30px;
+    font-size: 14px;
+    color: #e6e6e6;
+    background-color: #fbfbfb;
+    margin-bottom: 10px;
+}
+
+.header_left {
+    float: left;
+}
+
+.header_right {
+    float: right;
+}
+
+/*清除浮动*/
+.clearfix:after, .clearfix:before {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.item{
+    padding-right: 10px;
+}
+.item:hover{
+    color:bisque;
+}

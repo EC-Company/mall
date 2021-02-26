@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.login_box {
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -250px;
+}
+
+.login_header {
+    line-height: 100px;
+    text-align: center;
+}
+
+.login_msg {
+    color: red;
+}
+
+.main_box {
+    padding: 15px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.main_iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.header_box {
+    padding-top: 20px;
+}
+
+.product_pic {
+    width: 120px;
+    height: 120px;
+}

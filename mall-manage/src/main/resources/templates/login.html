@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>积分商城后台管理-登录</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/layui/css/layui.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}"/>
+</head>
+<body>
+<div>
+    <div class="login_box">
+        <h1 class="login_header">积分商城后台管理</h1>
+        <div class="layui-form layui-form-pane" lay-filter="loginForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" lay-verify="username" autocomplete="off" placeholder="请输入用户名"
+                           class="layui-input"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" lay-verify="password" autocomplete="off"
+                           placeholder="请输入用户密码" class="layui-input"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button type="button" class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="loginForm">登录</button>
+            </div>
+            <span class="login_msg" id="msg"></span>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/layui/layui.js}"></script>
+<script>
+    layui.use(['form', 'jquery'], function () {
+        var $ = layui.$, form = layui.form;
+        //自定义验证规则
+        form.verify({
+            username: function (value) {
+                if (value.length < 5) {
+                    return '账号至少输入5个字符';
+                }
+            }
+            , password: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+        //监听提交
+        form.on('submit(loginForm)', function (data) {
+            // layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // });
+            $.post("login", data.field, function (d) {
+                console.log(d);
+                if (d.code == 0) {
+                    window.location.href = "index.html";
+                } else {
+                    $('#msg').text(d.msg);
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

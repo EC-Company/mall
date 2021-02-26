@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::head(~{::title},~{})">
+    <title>商城首页</title>
+</head>
+<body>
+<div th:replace="common::header"></div>
+<div th:replace="common::seach"></div>
+<div class="content">
+
+    <div class="main-nav">
+        <div class="inner-cont0">
+            <div class="inner-cont1 w1200">
+                <!--<div id="typeBox" class="inner-cont2">-->
+                <!--<a href="commodity.html" class="active">所有商品</a>-->
+                <!--<a href="buytoday.html">今日团购</a>-->
+                <!--<a href="information.html">母婴资讯</a>-->
+                <!--<a href="about.html">关于我们</a>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <div class="product-list-box" id="product-list-box">
+        <div class="product-list-cont w1200">
+            <div id="productBox" class="product-item-box layui-clear">
+
+                <!--<div class="list-item">-->
+                    <!--<a href="javascript:;"><img th:src="@{/image/more1.jpg}"></a>-->
+                    <!--<p>时尚宝宝小黄鸭T恤纯棉耐脏多色可选0-2岁宝宝</p>-->
+                    <!--<span>￥100.00</span>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div style="font-size: 20px;" id="productPage"></div>
+    </div>
+</div>
+
+<script id="demo" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="list-item">
+        <a href="details.html?productId={{item.id}}"><img src="{{item.image}}" height="231px" width="231px"></a>
+        <p>{{item.name}}</p>
+        <span>{{item.score}}积分</span>
+    </div>
+    {{#  }); }}
+</script>
+
+
+<div th:replace="common::footer"></div>
+<script th:src="@{/static/layui/layui.js}" charset="UTF-8"></script>
+<script th:src="@{/static/js/shop/index.js}"></script>
+</body>
+</html>

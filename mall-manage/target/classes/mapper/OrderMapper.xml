@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxnd.manage.mapper.OrderMapper">
+
+    <select id="queryList" parameterType="com.sxnd.mall.vo.OrderVO" resultType="com.sxnd.mall.dto.OrderDTO">
+        SELECT mo.*,mp.`name` AS productName,mu.`username` AS `username` FROM `mall_order` AS mo
+        LEFT JOIN mall_product AS mp ON mo.`product_id`=mp.`id`
+        LEFT JOIN mall_user AS mu ON mo.`user_id`=mu.`id`
+        <where>
+            <if test="orderNo!=null and orderNo!=''">
+                mo.order_no=#{orderNo}
+            </if>
+        </where>
+        order by mo.status,mo.create_time desc
+    </select>
+
+    <update id="updateOrderStatus" parameterType="int">
+        update mall_order set status=1 where id=#{id}
+    </update>
+
+</mapper>

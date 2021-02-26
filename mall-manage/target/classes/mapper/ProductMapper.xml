@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxnd.manage.mapper.ProductMapper">
+
+
+    <select id="queryList" parameterType="com.sxnd.mall.vo.ProductVO" resultType="com.sxnd.mall.pojo.Product">
+        select * from mall_product
+        <where>
+            <trim prefixOverrides="and">
+                <if test="name!=null and name!=''">
+                    and name like concat('%',#{name},'%')
+                </if>
+                and del=0
+            </trim>
+        </where>
+    </select>
+
+
+    <select id="queryProductInfo" parameterType="int" resultType="com.sxnd.mall.pojo.Product">
+        select * from mall_product where id=#{id}
+    </select>
+
+    <update id="deleteProductById">
+        update mall_product set del=1 where id=#{id}
+    </update>
+
+    <update id="updateProductStatus">
+        update mall_product set status=#{status} where id=#{id}
+    </update>
+
+
+    <insert id="insertProduct" parameterType="com.sxnd.mall.pojo.Product">
+        insert into mall_product (`name`,image,stock,score,details) values(#{name},#{image},#{stock},#{score},#{details})
+    </insert>
+
+    <update id="updateProduct" parameterType="com.sxnd.mall.pojo.Product">
+        update mall_product set update_time=now()
+        <if test="name!=null and name != ''">
+            ,`name`=#{name}
+        </if>
+        <if test="image!=null and image != ''">
+            ,`image`=#{image}
+        </if>
+        <if test="details!=null and details != ''">
+            ,`details`=#{details}
+        </if>
+        <if test="stock!=null and stock != ''">
+            ,`stock`=#{stock}
+        </if>
+        <if test="score!=null and score != ''">
+            ,`score`=#{score}
+        </if>
+        where id=#{id}
+    </update>
+
+
+</mapper>

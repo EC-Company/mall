@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>积分商城后台管理-编辑商品</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/layui/css/layui.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/static/css/common.css}"/>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-form layui-form-pane" lay-filter="productForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="name" placeholder="请输入商品名" autocomplete="off"
+                       class="layui-input" th:value="${product.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">商品库存</label>
+                <div class="layui-input-block">
+                    <input type="number" name="stock" lay-verify="stock" autocomplete="off" class="layui-input"
+                           th:value="${product.stock}">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">所需积分</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="score" lay-verify="score" autocomplete="off" class="layui-input"
+                           th:value="${product.score}">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="line-height:122px;height:122px">商品图片</label>
+            <div class="layui-input-block">
+                <div class="layui-upload-drag product_pic" id="test10" style="padding: 0px;">
+                    <i id="pic_icon" class="layui-icon layui-hide"></i>
+                    <div class="product_pic" id="uploadDemoView">
+                        <img th:src="${product.image}" alt="上传成功后渲染" style="width: 100%;height: 100%;">
+                    </div>
+                </div>
+                <input type="hidden" name="image" id="productImage"/>
+                <input type="hidden" name="id" th:value="${product.id}"/>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">商品详情</label>
+            <div class="layui-input-block">
+                <textarea id="details" lay-verify="details" name="details" placeholder="请输入人商品详情"
+                          class="layui-textarea" th:text="${product.details}"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="productForm">提交</button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/layui/layui.js}" charset="UTF-8"></script>
+<script th:src="@{/static/js/product/product_edit.js}" charset="UTF-8"></script>
+</body>
+</html>

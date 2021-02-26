@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::head(~{::title},~{})">
+    <title>商品详情</title>
+</head>
+<body>
+<div th:replace="common::header"></div>
+<div th:replace="common::seach"></div>
+<div class="content content-nav-base datails-content">
+    <div class="main-nav">
+        <div class="inner-cont0">
+        </div>
+    </div>
+    <div class="data-cont-wrap w1200">
+        <div class="product-intro layui-clear">
+            <div class="preview-wrap">
+                <a href="javascript:;"><img id="productImage" th:src="${product.image}"
+                                            style="width: 402px;height: 402px"></a>
+            </div>
+            <div class="itemInfo-wrap">
+                <div class="itemInfo">
+                    <div class="title">
+                        <h4 id="productName" th:text="${product.name}">男女宝宝秋冬装套装0一1岁婴儿衣服潮加厚连体衣保暖冬季外出抱衣</h4>
+                        <!--<span><i class="layui-icon layui-icon-rate-solid"></i>收藏</span>-->
+                    </div>
+                    <div class="summary">
+                        <!--<p class="reference"><span>参考价</span>-->
+                        <!--<del>￥280.00</del>-->
+                        <!--</p>-->
+                        <p class="activity"><span>所需积分</span><strong class="price"><i></i><span
+                                id="productPrice"><span th:text="${product.score}">99</span>积分</span></strong></p>
+                        <!--<p class="address-box"><span>送&nbsp;&nbsp;&nbsp;&nbsp;至</span><strong class="address">江西&nbsp;&nbsp;南昌&nbsp;&nbsp;东湖区</strong>-->
+                        <!--</p>-->
+                    </div>
+                    <div class="choose-attrs">
+                        <!--<div class="color layui-clear"><span class="title">颜&nbsp;&nbsp;&nbsp;&nbsp;色</span>-->
+                        <!--<div class="color-cont"><span class="btn">白色</span> <span class="btn active">粉丝</span></div>-->
+                        <!--</div>-->
+                        <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span>
+                            <div class="number-cont">
+                                <!--<span class="cut btn">-</span><input-->
+                                <!--onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"-->
+                                <!--onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"-->
+                                <!--maxlength="4" type="" name="" value="1"><span class="add btn">+</span>-->
+                                1
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choose-btns">
+                        <!--<button class="layui-btn layui-btn-primary purchase-btn" id="lkgm">立刻购买</button>-->
+                        <button class="layui-btn  layui-btn-danger car-btn" id="ljdh">
+                            立即兑换
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <h4>详情</h4>
+            <div class="item" id="productDetails">
+                <span id="details"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addressBox" style="display: none;padding: 10px;">
+    <div class="layui-form layui-form-pane" style="width: 660px;">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">收货人</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="consignee" placeholder="请输入收货人姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="phone" placeholder="请输入收货手机号" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">收货详细地址</label>
+            <div class="layui-input-block">
+                <textarea id="address" placeholder="收货详细地址" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common::footer"></div>
+<script th:src="@{/static/layui/layui.js}" charset="UTF-8"></script>
+<script th:inline="javascript">
+    //获取商品详情
+    var details = [[${product.details}]];
+    var productId = [[${product.id}]];
+    document.getElementById("details").innerHTML = details;
+</script>
+<script th:src="@{/static/js/shop/details.js}" charset="UTF-8"></script>
+</body>
+</html>
